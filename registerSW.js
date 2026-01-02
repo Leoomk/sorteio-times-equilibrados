@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/sorteio-times-equilibrados/sw.js', { scope: '/sorteio-times-equilibrados/' })})}

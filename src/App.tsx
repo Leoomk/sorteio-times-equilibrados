@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Player } from './types';
 import { sortearTimes, Time, ModoSorteio } from './utils/teamBalancer';
 import { PlayerForm } from './components/PlayerForm';
-import { ImportPlayers } from './components/ImportPlayers';
+import { PlayerForm } from './components/PlayerForm';
 import { TeamDisplay } from './components/TeamDisplay';
 import { StatsView } from './components/StatsView';
 import { DataTools } from './components/DataTools';
@@ -196,10 +196,10 @@ function App() {
                         </div>
 
                         <div className="glass-card" style={{ padding: '20px' }}>
-                            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)' }}>IMPORTAR & BACKUP</label>
-                            <div style={{ marginTop: '12px' }}><ImportPlayers onImport={handleImport} /></div>
-                            <div style={{ margin: '12px 0', borderBottom: '1px solid var(--glass-border)' }}></div>
-                            <DataTools players={jogadores} history={historico} onImport={handleFullImport} />
+                            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)' }}>BACKUP & RESTAURAÇÃO</label>
+                            <div style={{ marginTop: '12px' }}>
+                                <DataTools players={jogadores} history={historico} onImport={handleFullImport} />
+                            </div>
                         </div>
 
                         <button onClick={handleLimparTudo} style={{ fontSize: '10px', color: '#ff4444', background: 'transparent', border: 'none', textAlign: 'center', width: '100%', opacity: 0.5 }}>

@@ -149,10 +149,10 @@ export const PlayerForm: React.FC<PlayerFormProps> = ({ onSubmit, initialData })
 
                 {!isGoleiro ? (
                     <div style={{ display: 'grid', gap: '16px' }}>
-                        {['chute', 'passe', 'velocidade', 'drible', 'marcacao'].map((attr) => (
+                        {['chute', 'passe', 'velocidade', 'drible', 'marcacao', 'dominio'].map((attr) => (
                             <div key={attr}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '12px' }}>
-                                    <span style={{ textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: 600 }}>{attr}</span>
+                                    <span style={{ textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: 600 }}>{attr === 'dominio' ? 'domínio' : attr}</span>
                                     <span style={{ color: 'var(--primary)', fontWeight: 700, fontFamily: 'monospace' }}>
                                         {player[attr as keyof typeof player]}
                                     </span>

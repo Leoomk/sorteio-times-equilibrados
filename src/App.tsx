@@ -165,7 +165,7 @@ function App() {
 
             <aside className="sidebar">
                 <div className="logo">
-                    <img src="/logo.jpg" alt="Logo" className="logo-icon" />
+                    <img src="logo.png" alt="Logo" className="logo-icon" />
                     <h1 className="logo-text">Sorteador<span className="text-primary"> de Times</span></h1>
                 </div>
 

@@ -243,8 +243,11 @@ select {
 .logo-icon {
   height: 48px;
   width: auto;
-  filter: drop-shadow(var(--glow-primary));
-  border-radius: 8px; /* Opcional: arredondar cantos se ficar melhor */
+  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.4));
+  border-radius: 4px;
+  background: white;
+  /* fundo branco para o logo destacar no tema escuro */
+  padding: 2px;
 }
 
 .logo-text {

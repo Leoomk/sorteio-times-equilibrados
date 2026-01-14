@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Player } from './types';
 import { sortearTimes, Time, ModoSorteio } from './utils/teamBalancer';
 import { PlayerForm } from './components/PlayerForm';
-import { PlayerForm } from './components/PlayerForm';
 import { TeamDisplay } from './components/TeamDisplay';
 import { StatsView } from './components/StatsView';
 import { DataTools } from './components/DataTools';
@@ -27,6 +26,7 @@ function App() {
     // Config Sorteio
     const [modoSorteio, setModoSorteio] = useState<ModoSorteio>('NUMERO_DE_TIMES');
     const [valorSorteio, setValorSorteio] = useState<number>(2);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleSavePlayer = (player: Player) => {
         if (editingPlayer?.id) {
@@ -154,14 +154,18 @@ function App() {
         }
     };
 
+    const filteredJogadores = jogadores.filter(p =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="app-container bg-animated">
             <div className="field-pattern"></div>
 
             <aside className="sidebar">
                 <div className="logo">
-                    <span className="logo-icon">⚽</span>
-                    <h1 className="logo-text">Team<span className="text-primary">Shuffle</span></h1>
+                    <img src="/logo.jpg" alt="Logo" className="logo-icon" />
+                    <h1 className="logo-text">Sorteador<span className="text-primary"> de Times</span></h1>
                 </div>
 
                 <div style={{ marginBottom: '32px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -323,14 +327,32 @@ function App() {
                         </div>
 
                         {/* GRID DE JOGADORES (FIFA STYLE) */}
-                        {jogadores.length > 0 ? (
+                        <div style={{ marginBottom: '20px' }}>
+                            <input
+                                type="text"
+                                placeholder="🔍 Buscar jogador pelo nome..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="input-modern"
+                                style={{
+                                    width: '100%',
+                                    padding: '16px',
+                                    fontSize: '16px',
+                                    background: 'rgba(255, 255, 255, 0.05)',
+                                    border: '1px solid var(--glass-border)',
+                                    borderRadius: '12px'
+                                }}
+                            />
+                        </div>
+
+                        {filteredJogadores.length > 0 ? (
                             <div style={{ marginBottom: '40px' }}>
                                 <div style={{
                                     display: 'grid',
                                     gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
                                     gap: '16px'
                                 }}>
-                                    {jogadores.map(player => (
+                                    {filteredJogadores.map(player => (
                                         <PlayerCard
                                             key={player.id}
                                             player={player}

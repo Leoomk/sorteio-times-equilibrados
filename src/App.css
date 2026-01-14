@@ -241,8 +241,10 @@ select {
 }
 
 .logo-icon {
-  font-size: 32px;
+  height: 48px;
+  width: auto;
   filter: drop-shadow(var(--glow-primary));
+  border-radius: 8px; /* Opcional: arredondar cantos se ficar melhor */
 }
 
 .logo-text {

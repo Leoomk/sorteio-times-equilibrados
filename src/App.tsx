@@ -22,6 +22,7 @@ function App() {
 
     const [editingPlayer, setEditingPlayer] = useState<Partial<Player> | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isBackupHelpOpen, setIsBackupHelpOpen] = useState(false);
 
     // Config Sorteio
     const [modoSorteio, setModoSorteio] = useState<ModoSorteio>('NUMERO_DE_TIMES');
@@ -200,8 +201,29 @@ function App() {
                         </div>
 
                         <div className="glass-card" style={{ padding: '20px' }}>
-                            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)' }}>BACKUP & RESTAURAÇÃO</label>
-                            <div style={{ marginTop: '12px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                                <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)' }}>BACKUP & RESTAURAÇÃO</label>
+                                <button
+                                    onClick={() => setIsBackupHelpOpen(true)}
+                                    style={{
+                                        background: 'var(--primary)',
+                                        color: 'black',
+                                        border: 'none',
+                                        borderRadius: '50%',
+                                        width: '18px',
+                                        height: '18px',
+                                        fontSize: '12px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    i
+                                </button>
+                            </div>
+                            <div>
                                 <DataTools players={jogadores} history={historico} onImport={handleFullImport} />
                             </div>
                         </div>
@@ -393,6 +415,36 @@ function App() {
                     onSubmit={handleSavePlayer}
                     initialData={editingPlayer || undefined}
                 />
+            </Modal>
+
+            {/* Modal de Ajuda do Backup */}
+            <Modal
+                isOpen={isBackupHelpOpen}
+                onClose={() => setIsBackupHelpOpen(false)}
+                title="Como funciona o salvamento?"
+            >
+                <div style={{ padding: '10px', lineHeight: '1.6' }}>
+                    <p style={{ marginBottom: '16px', fontSize: '16px' }}>
+                        📌 <strong>Pense nisso como um "Pen Drive" Digital:</strong>
+                    </p>
+                    <p style={{ marginBottom: '12px' }}>
+                        Quando você clica em <strong>Backup</strong>, o aplicativo cria um arquivo que contém todos os jogadores e históricos que você cadastrou.
+                    </p>
+                    <p style={{ marginBottom: '12px' }}>
+                        Se por acaso você trocar de celular, usar outro computador ou o navegador acabar limpando os dados, você não perde nada!
+                    </p>
+                    <p>
+                        Basta clicar em <strong>Restaurar</strong> e escolher aquele arquivo que você salvou. Assim, tudo volta a ser como era antes, num passe de mágica! ✨
+                    </p>
+
+                    <button
+                        onClick={() => setIsBackupHelpOpen(false)}
+                        className="btn-primary"
+                        style={{ width: '100%', marginTop: '24px' }}
+                    >
+                        Entendi!
+                    </button>
+                </div>
             </Modal>
         </div>
     );
